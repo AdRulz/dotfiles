@@ -51,6 +51,19 @@ syntax on
 " 'cindent' is on in C files, etc.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
+
+" CoffeeScript indent
+au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+" Encoding
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+setlocal spell spelllang=ru_yo,en_us
+set encoding=utf-8
+set fileencodings=utf-8,cp1251,koi8-r,latin1
+
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
@@ -97,11 +110,17 @@ augroup END
 :set t_Co=256 " 256 colors
 :set background=dark
 :color grb256
+:colorscheme solarized
 
+if has("gui_running")
+  syntax on
+  set guifont=Skyhook\ Mono:h14
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+let g:Powerline_colorscheme = 'skwp'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
@@ -116,6 +135,7 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
+imap jj  <Esc>
 " Clear the search buffer when hitting return
 function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
