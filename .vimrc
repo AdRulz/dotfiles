@@ -74,6 +74,7 @@ let mapleader=","
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.scss set filetype=scss
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
@@ -136,7 +137,6 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
-imap jj  <Esc>
 " Clear the search buffer when hitting return
 function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
@@ -283,6 +283,13 @@ map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
+map <leader>gjv :CommandTFlush<cr>\|:CommandT app/assets/javascripts/views<cr>
+map <leader>gjc :CommandTFlush<cr>\|:CommandT app/assets/javascripts/controllers<cr>
+map <leader>gjm :CommandTFlush<cr>\|:CommandT app/assets/javascripts/models<cr>
+map <leader>gjh :CommandTFlush<cr>\|:CommandT app/assets/javascripts/helpers<cr>
+map <leader>gjr :CommandTFlush<cr>\|:CommandT app/assets/javascripts/routes<cr>
+map <leader>gjt :CommandTFlush<cr>\|:CommandT app/assets/javascripts/templates<cr>
+map <leader>gjs :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
