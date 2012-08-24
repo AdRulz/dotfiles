@@ -1,20 +1,21 @@
-" This is Gary Bernhardt's .vimrc file
-" vim:set ts=2 sts=2 sw=2 expandtab:
+" This is Adil Jarulin's vimrc file. (honestly stolen from Gary Bernhardt)
+
 
 call pathogen#runtime_append_all_bundles()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ve=all
 set nocompatible
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
 " remember more commands and search history
 set history=10000
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set autoindent
 set laststatus=2
 set showmatch
@@ -109,7 +110,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
 :set background=dark
-:color grb256
+":color grb256
 :colorscheme solarized
 
 if has("gui_running")
