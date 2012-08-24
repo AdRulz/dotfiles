@@ -47,3 +47,9 @@
 [submodule ".vim/bundle/vim-scss"]
 	path = .vim/bundle/vim-scss
 	url = git://github.com/cakebaker/scss-syntax.vim.git
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/vim-zencoding"]
+	path = .vim/bundle/vim-zencoding
+	url = git://github.com/mattn/zencoding-vim.git
