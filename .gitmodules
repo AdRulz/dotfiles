@@ -65,3 +65,6 @@
 [submodule ".vim/snippets"]
 	path = .vim/snippets
 	url = git://github.com/scrooloose/snipmate-snippets.git
+[submodule ".vim/bundle/vim-supertab"]
+	path = .vim/bundle/vim-supertab
+	url = git://github.com/ervandew/supertab.git
