@@ -1,6 +1,4 @@
 " This is Adil Jarulin's vimrc file. (honestly stolen from Gary Bernhardt)
-
-
 call pathogen#runtime_append_all_bundles()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -17,11 +15,11 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set autoindent
+set autowrite
 set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
-set autowrite 
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 " highlight current line
@@ -78,6 +76,8 @@ let mapleader=","
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Kill trailing whitespace on save
+
 au BufRead,BufNewFile *.scss set filetype=scss
 augroup vimrcEx
   " Clear all autocmds in the group
@@ -93,7 +93,7 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
