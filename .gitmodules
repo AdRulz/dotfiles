@@ -68,3 +68,6 @@
 [submodule ".vim/bundle/vim-supertab"]
 	path = .vim/bundle/vim-supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/vim-cucumber"]
+	path = .vim/bundle/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber.git
