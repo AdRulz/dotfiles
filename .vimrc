@@ -82,6 +82,8 @@ au BufRead,BufNewFile *.scss set filetype=scss
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
+
+
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
@@ -113,9 +115,9 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set t_Co=256 " 256 colors
+set t_Co=256 " 256 colors
 colorscheme solarized
-:set background=dark
+set background=dark
 "j:color grb256
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
@@ -126,6 +128,13 @@ if has("gui_running")
   syntax on
   set guifont=Skyhook\ Mono:h14
 endif
+
+"Highlight commas for best diff with dots (special for Skyhook Mono) 
+ 
+highlight Comma ctermfg=red
+autocmd! BufRead,BufNewFile * match Comma /,/
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,6 +145,7 @@ let g:Powerline_colorscheme = 'skwp'
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Move lines
+"TODO Replace current symbols with ALT key
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
