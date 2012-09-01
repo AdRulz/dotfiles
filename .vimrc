@@ -131,8 +131,8 @@ endif
 
 "Highlight commas for best diff with dots (special for Skyhook Mono) 
  
-highlight Comma ctermfg=red
-autocmd! BufRead,BufNewFile * match Comma /,/
+highlight commaInsteadDot ctermfg=red
+autocmd! BufRead,BufNewFile * match commaInsteadDot "[a-z],[a-z]"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
