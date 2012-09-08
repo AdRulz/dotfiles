@@ -25,13 +25,14 @@ set ignorecase smartcase
 " highlight current line
 set cursorline
 set cmdheight=2
-set winheight=30
+set winheight=50
 set winminheight=5
+set winwidth=150
+set winminwidth=50
 set switchbuf=useopen
 set number
 set numberwidth=5
 set showtabline=2
-set winwidth=79
 " This makes RVM work inside Vim. I have no idea why.
 set shell=bash
 " Prevent Vim from clobbering the scrollback buffer. See
@@ -87,9 +88,9 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
@@ -130,7 +131,7 @@ if has("gui_running")
 endif
 
 "Highlight commas for best diff with dots (special for Skyhook Mono) 
- 
+
 highlight commaInsteadDot ctermfg=red
 autocmd! BufRead,BufNewFile * match commaInsteadDot "[a-z],[a-z]"
 
@@ -139,8 +140,8 @@ autocmd! BufRead,BufNewFile * match commaInsteadDot "[a-z],[a-z]"
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'skwp'
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,12 +180,12 @@ nnoremap <c-i> ggVG=''j
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
@@ -208,13 +209,13 @@ map <leader>v :view %%
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <leader>n :call RenameFile()<cr>
 
@@ -235,20 +236,20 @@ endfunction
 " EXTRACT VARIABLE (SKETCHY)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ExtractVariable()
-    let name = input("Variable name: ")
-    if name == ''
-        return
-    endif
-    " Enter visual mode (not sure why this is needed since we're already in
-    " visual mode anyway)
-    normal! gv
+  let name = input("Variable name: ")
+  if name == ''
+    return
+  endif
+  " Enter visual mode (not sure why this is needed since we're already in
+  " visual mode anyway)
+  normal! gv
 
-    " Replace selected text with the variable name
-    exec "normal c" . name
-    " Define the variable on the line above
-    exec "normal! O" . name . " = "
-    " Paste the original selected text to be the variable value
-    normal! $p
+  " Replace selected text with the variable name
+  exec "normal c" . name
+  " Define the variable on the line above
+  exec "normal! O" . name . " = "
+  " Paste the original selected text to be the variable value
+  normal! $p
 endfunction
 vnoremap <leader>rv :call ExtractVariable()<cr>
 
@@ -256,26 +257,26 @@ vnoremap <leader>rv :call ExtractVariable()<cr>
 " INLINE VARIABLE (SKETCHY)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InlineVariable()
-    " Copy the variable under the cursor into the 'a' register
-    :let l:tmp_a = @a
-    :normal "ayiw
-    " Delete variable and equals sign
-    :normal 2daW
-    " Delete the expression into the 'b' register
-    :let l:tmp_b = @b
-    :normal "bd$
-    " Delete the remnants of the line
-    :normal dd
-    " Go to the end of the previous line so we can start our search for the
-    " usage of the variable to replace. Doing '0' instead of 'k$' doesn't
-    " work; I'm not sure why.
-    normal k$
-    " Find the next occurence of the variable
-    exec '/\<' . @a . '\>'
-    " Replace that occurence with the text we yanked
-    exec ':.s/\<' . @a . '\>/' . @b
-    :let @a = l:tmp_a
-    :let @b = l:tmp_b
+  " Copy the variable under the cursor into the 'a' register
+  :let l:tmp_a = @a
+  :normal "ayiw
+  " Delete variable and equals sign
+  :normal 2daW
+  " Delete the expression into the 'b' register
+  :let l:tmp_b = @b
+  :normal "bd$
+  " Delete the remnants of the line
+  :normal dd
+  " Go to the end of the previous line so we can start our search for the
+  " usage of the variable to replace. Doing '0' instead of 'k$' doesn't
+  " work; I'm not sure why.
+  normal k$
+  " Find the next occurence of the variable
+  exec '/\<' . @a . '\>'
+  " Replace that occurence with the text we yanked
+  exec ':.s/\<' . @a . '\>/' . @b
+  :let @a = l:tmp_a
+  :let @b = l:tmp_b
 endfunction
 nnoremap <leader>ri :call InlineVariable()<cr>
 
@@ -360,52 +361,52 @@ map <leader>c :w\|:!script/features<cr>
 map <leader>w :w\|:!script/features --profile wip<cr>
 
 function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
+  endif
 
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
+  " Run the tests for the previously-marked file.
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+  if in_test_file
+    call SetTestFile()
+  elseif !exists("t:grb_test_file")
+    return
+  end
+  call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
 function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
+  let spec_line_number = line('.')
+  call RunTestFile(":" . spec_line_number . " -b")
 endfunction
 
 function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
+  " Set the spec file that tests will be run for.
+  let t:grb_test_file=@%
 endfunction
 
 function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
+  " Write the file and run tests for the given filename
+  :w
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  if match(a:filename, '\.feature$') != -1
+    exec ":!script/features " . a:filename
+  else
+    if filereadable("script/test")
+      exec ":!script/test " . a:filename
+    elseif filereadable("Gemfile")
+      exec ":!bundle exec rspec --color " . a:filename
     else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
+      exec ":!rspec --color " . a:filename
     end
+  end
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
