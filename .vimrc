@@ -25,7 +25,7 @@ set ignorecase smartcase
 " highlight current line
 set cursorline
 set cmdheight=2
-set winheight=50
+set winheight=40
 set winminheight=5
 set winwidth=150
 set winminwidth=50
