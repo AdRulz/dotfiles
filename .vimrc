@@ -145,6 +145,10 @@ let g:Powerline_colorscheme = 'skwp'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
+" " (it will prompt for sudo password when writing)
+cmap w!! %!sudo tee > /dev/null %
+
 "Move lines
 "TODO Replace current symbols with ALT key
 nnoremap ∆ :m .+1<CR>==
