@@ -71,3 +71,6 @@
 [submodule ".vim/bundle/vim-cucumber"]
 	path = .vim/bundle/vim-cucumber
 	url = git://github.com/tpope/vim-cucumber.git
+[submodule "/Users/adil_jarulin/.vim/bundle/vim-ack"]
+	path = /Users/adil_jarulin/.vim/bundle/vim-ack
+	url = git://github.com/mileszs/ack.vim.git

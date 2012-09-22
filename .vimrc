@@ -61,7 +61,6 @@ au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 " Encoding
-set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
 setlocal spell spelllang=ru_yo,en_us
@@ -406,7 +405,7 @@ function! RunTests(filename)
     if filereadable("script/test")
       exec ":!script/test " . a:filename
     elseif filereadable("Gemfile")
-      exec ":!bundle exec rspec --color " . a:filename
+      exec ":!rspec --color --drb " . a:filename
     else
       exec ":!rspec --color " . a:filename
     end
