@@ -73,6 +73,11 @@ set wildmode=longest,list
 set wildmenu
 let mapleader=","
 
+" Tmux
+let g:VimuxOrientation = "h"
+let VimuxUseNearestPane = 1
+let VimuxHeight = "33" 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
