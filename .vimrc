@@ -4,6 +4,13 @@ call pathogen#runtime_append_all_bundles()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JCUKEN
+ set keymap=russian-jcukenwin
+ set iminsert=0
+ set imsearch=0
+ highlight lCursor guifg=NONE guibg=Cyan 
+ setlocal spell spelllang=ru_yo,en_us
+
 set ve=all
 set nocompatible
 " allow unsaved background buffers and remember marks/undo for them
@@ -35,7 +42,7 @@ set numberwidth=5
 set showtabline=2
 " This makes RVM work inside Vim. I have no idea why.
 set shell=bash
-" Prevent Vim from clobbering the scrollback buffer. See
+" Prevent Vim from clobbering the scollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 "set t_ti= t_te=
 " keep more context when scrolling off the end of a buffer
@@ -73,9 +80,9 @@ set wildmode=longest,list
 set wildmenu
 let mapleader=","
 
-" Tmux
+" Vimux
+"let VimuxUseNearestPane = 1
 let g:VimuxOrientation = "h"
-let VimuxUseNearestPane = 1
 let VimuxHeight = "33" 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -312,6 +319,7 @@ map <leader>gR :call ShowRoutes()<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>ga :CommandTFlush<cr>\|:CommandT app/serializers<cr>
 map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
@@ -398,19 +406,19 @@ endfunction
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :w
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
   if match(a:filename, '\.feature$') != -1
     exec ":!script/features " . a:filename
   else
     if filereadable("script/test")
       exec ":!script/test " . a:filename
     elseif filereadable("Gemfile")
-      exec ":!rspec --color --drb " . a:filename
+      :call VimuxRunCommand("rspec --color --drb " . a:filename  )
     else
       exec ":!rspec --color " . a:filename
     end

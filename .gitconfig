@@ -48,3 +48,4 @@
 
 [core]
 	editor = /usr/local/bin/vim
+	excludesfile = /Users/adil_jarulin/.gitignore_global
