@@ -5,11 +5,11 @@ call pathogen#runtime_append_all_bundles()
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JCUKEN
- set keymap=russian-jcukenwin
- set iminsert=0
- set imsearch=0
- highlight lCursor guifg=NONE guibg=Cyan 
- setlocal spell spelllang=ru_yo,en_us
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan 
+setlocal spell spelllang=ru_yo,en_us
 
 set ve=all
 set nocompatible
@@ -82,7 +82,7 @@ let mapleader=","
 
 " Vimux
 "let VimuxUseNearestPane = 1
-let g:VimuxOrientation = "h"
+"let g:VimuxOrientation = "h"
 let VimuxHeight = "33" 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -344,21 +344,33 @@ function! OpenTestAlternate()
   let new_file = AlternateForCurrentFile()
   exec ':e ' . new_file
 endfunction
+
 function! AlternateForCurrentFile()
   let current_file = expand("%")
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<javascripts\>') != -1
+  let in_assets = match(current_file, '\<javascripts\>')  != -1
+
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
     end
+    if in_assets
+      let new_file = substitute(new_file, '^assets/', '', '')
+    end
+
+    let new_file = substitute(new_file, '\.js\(\.\{0,1\}\)\@=', '_spec.js', '')
     let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
     let new_file = 'spec/' . new_file
   else
+    let new_file = substitute(new_file, '_spec\.js', '.js', '')
     let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
     let new_file = substitute(new_file, '^spec/', '', '')
+    if in_assets
+      let new_file = 'assets/' . new_file
+    end
     if in_app
       let new_file = 'app/' . new_file
     end
@@ -413,7 +425,7 @@ function! RunTests(filename)
   ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
   ":silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
   if match(a:filename, '\.feature$') != -1
-      :call VimuxRunCommand( "script/features " . a:filename )
+    :call VimuxRunCommand( "script/features " . a:filename )
   else
     if filereadable("script/test")
       exec ":!script/test " . a:filename
