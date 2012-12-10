@@ -67,6 +67,7 @@ filetype plugin indent on
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
+
 " Encoding
 set iminsert=0
 set imsearch=0
@@ -82,7 +83,7 @@ let mapleader=","
 
 " Vimux
 "let VimuxUseNearestPane = 1
-"let g:VimuxOrientation = "h"
+let g:VimuxOrientation = "h"
 let VimuxHeight = "33" 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
