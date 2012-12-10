@@ -92,6 +92,8 @@ let VimuxHeight = "33"
 " Kill trailing whitespace on save
 
 au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile Assetfile set filetype=ruby
+
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
