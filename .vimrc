@@ -44,7 +44,7 @@ set showtabline=2
 set shell=bash
 " Prevent Vim from clobbering the scollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
-"set t_ti= t_te=
+set t_ti= t_te=
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 " Store temporary files in a central spot
@@ -132,7 +132,8 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 " 256 colors
 colorscheme solarized
-set background=dark
+"set background=dark
+set background=light
 "j:color grb256
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
@@ -153,9 +154,15 @@ autocmd! BufRead,BufNewFile * match commaInsteadDot "[a-z],[a-z]"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"hide tmux staus bar
+"autocmd VimEnter,VimLeave * silent !tmux set status
+
+source /usr/local/lib/python2.7/site-packages/powerline/ext/vim/source_plugin.vim
+python from powerline.ext.vim import source_plugin; source_plugin()
 ":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme = 'skwp'
+"set fillchars+=stl:\ ,stlnc:\
+"let g:Powerline_symbols = 'fancy'
+"let g:Powerline_colorscheme = 'skwp'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -193,6 +200,8 @@ nnoremap <leader><leader> <c-^>
 " format the entire file
 nnoremap <c-i> ggVG=''j
 
+" Replace highlighted text (Visual Mode)
+vnoremap <C-r> <Esc>:%s/<C-r>+//gc<left><left><left>
 
 " CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w
@@ -350,6 +359,136 @@ map <leader>gjh :CommandTFlush<cr>\|:CommandT app/assets/javascripts/helpers<cr>
 map <leader>gjr :CommandTFlush<cr>\|:CommandT app/assets/javascripts/routes<cr>
 map <leader>gjt :CommandTFlush<cr>\|:CommandT app/assets/javascripts/templates<cr>
 map <leader>gjs :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+map <leader>gjf :CommandTFlush<cr>\|:CommandT spec/javascripts<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN MVC's OBJECTS.
+" EMBER.JS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenMVCTemplate()
+  let new_file = TemplateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! OpenMVCController()
+  let new_file = ControllerForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! OpenMVCView()
+  let new_file = ViewForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! OpenMVCRoute()
+  let new_file = RouteForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! TemplateForCurrentFile()
+  let current_file = expand("%")
+  let is_view = match(current_file, '\<views\>')  != -1
+  let is_template = match(current_file, '\<templates\>')  != -1
+  let is_controller = match(current_file, '\<controllers\>')  != -1
+  let is_route = match(current_file, '\<routes\>')  != -1
+
+  let new_file = current_file
+  let new_file = substitute(new_file, '\.\+.*', '.handlebars', '')
+
+  if is_view
+    let new_file = substitute(new_file, '_view', '', '')
+    let new_file = substitute(new_file, '\<views\>', 'templates', '')
+  end
+
+  if is_route
+    let new_file = substitute(new_file, '_route', '', '')
+    let new_file = substitute(new_file, '\<routes\>', 'templates', '')
+  end
+
+  if is_controller
+    let new_file = substitute(new_file, '\<controllers\>', 'templates', '')
+    let new_file = substitute(new_file, '_controller', '', '')
+  end
+
+  return new_file
+endfunction
+
+function! ControllerForCurrentFile()
+  let current_file = expand("%")
+  let is_view = match(current_file, '\<views\>')  != -1
+  let is_template = match(current_file, '\<templates\>')  != -1
+  let is_controller = match(current_file, '\<controllers\>')  != -1
+  let is_route = match(current_file, '\<routes\>')  != -1
+
+  let new_file = current_file
+
+  if is_view
+    let new_file = substitute(new_file, '_view', '_controller', '')
+    let new_file = substitute(new_file, '\<views\>', 'controllers', '')
+  end
+  if is_template
+    let new_file = substitute(new_file, '\.\+.*', '_controller.js.coffee', '') "coffee is hardcoded :(
+    let new_file = substitute(new_file, '\<templates\>', 'controllers', '')
+  end
+  if is_route
+    let new_file = substitute(new_file, '_route', '_controller', '')
+    let new_file = substitute(new_file, '\<routes\>', 'controllers', '')
+  end
+  return new_file
+endfunction
+
+function! ViewForCurrentFile()
+  let current_file = expand("%")
+  let is_view = match(current_file, '\<views\>')  != -1
+  let is_template = match(current_file, '\<templates\>')  != -1
+  let is_controller = match(current_file, '\<controllers\>')  != -1
+  let is_route = match(current_file, '\<routes\>')  != -1
+
+  let new_file = current_file
+
+  if is_controller
+    let new_file = substitute(new_file, '_controller', '_view', '')
+    let new_file = substitute(new_file, '\<controllers\>', 'views', '')
+  end
+  if is_template
+    let new_file = substitute(new_file, '\.\+.*', '_view.js.coffee', '') "coffee is hardcoded :(
+    let new_file = substitute(new_file, '\<templates\>', 'views', '')
+  end
+  if is_route
+    let new_file = substitute(new_file, '_route', '_view', '')
+    let new_file = substitute(new_file, '\<routes\>', 'views', '')
+  end
+  return new_file
+endfunction
+
+function! RouteForCurrentFile()
+  let current_file = expand("%")
+  let is_view = match(current_file, '\<views\>')  != -1
+  let is_template = match(current_file, '\<templates\>')  != -1
+  let is_controller = match(current_file, '\<controllers\>')  != -1
+  let is_route = match(current_file, '\<routes\>')  != -1
+
+  let new_file = current_file
+
+  if is_controller
+    let new_file = substitute(new_file, '_controller', '_route', '')
+    let new_file = substitute(new_file, '\<controllers\>', 'routes', '')
+  end
+  if is_template
+    let new_file = substitute(new_file, '\.\+.*', '_route.js.coffee', '') "coffee is hardcoded :(
+    let new_file = substitute(new_file, '\<templates\>', 'routes', '')
+  end
+  if is_view
+    let new_file = substitute(new_file, '_view', '_route', '')
+    let new_file = substitute(new_file, '\<views\>', 'routes', '')
+  end
+  return new_file
+endfunction
+
+nnoremap <leader>.t :call OpenMVCTemplate()<cr>
+nnoremap <leader>.c :call OpenMVCController()<cr>
+nnoremap <leader>.v :call OpenMVCView()<cr>
+nnoremap <leader>.r :call OpenMVCRoute()<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -390,7 +529,7 @@ function! AlternateForCurrentFile()
   endif
   return new_file
 endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
+nnoremap <leader>.s :call OpenTestAlternate()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
@@ -420,7 +559,7 @@ endfunction
 
 function! RunNearestTest()
   let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number . " -b")
+  call RunTestFile(":" . spec_line_number)
 endfunction
 
 function! SetTestFile()
