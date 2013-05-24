@@ -32,7 +32,7 @@ set ignorecase smartcase
 " highlight current line
 set cursorline
 set cmdheight=2
-set winheight=40
+set winheight=30
 set winminheight=5
 set winwidth=150
 set winminwidth=50
@@ -158,8 +158,8 @@ autocmd! BufRead,BufNewFile * match commaInsteadDot "[a-z],[a-z]"
 "hide tmux staus bar
 "autocmd VimEnter,VimLeave * silent !tmux set status
 
-source /usr/local/lib/python2.7/site-packages/powerline/ext/vim/source_plugin.vim
-python from powerline.ext.vim import source_plugin; source_plugin()
+"source /usr/local/lib/python2.7/site-packages/powerline/ext/vim/source_plugin.vim
+"python from powerline.ext.vim import source_plugin; source_plugin()
 ":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 "set fillchars+=stl:\ ,stlnc:\
 "let g:Powerline_symbols = 'fancy'
