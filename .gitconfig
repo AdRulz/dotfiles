@@ -1,5 +1,5 @@
 [user]
-    name = Adil Jarulin
+	name = Adil Jarulin
     email = adil.jarulin@gmail.com
 [diff]
 [color]
@@ -43,9 +43,12 @@
     l = "!source ~/.githelpers && pretty_git_log"
     la = !git l --all
 
+    pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master" #grab all of the latest changes from both remotes, and then merge in the commits from upstream
+
+
 [merge]
     tool = vimdiff
 
 [core]
 	editor = /usr/local/bin/vim
-	excludesfile = /Users/adil_jarulin/.gitignore_global
+	excludesfile = /Users/adil_jarulin/.gitignore

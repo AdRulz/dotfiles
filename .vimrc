@@ -132,12 +132,13 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 " 256 colors
 colorscheme solarized
-"set background=dark
-set background=light
+set background=dark
+"set background=light
 "j:color grb256
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
+let g:solarized_diffmode = "high"
 let g:solarized_termtrans = 1
 
 if has("gui_running")

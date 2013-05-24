@@ -110,3 +110,4 @@
 *.orig
 *.rej
 *.pyc
+.DS_Store
