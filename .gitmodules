@@ -92,3 +92,12 @@
 [submodule ".vim/bundle/handlebars"]
 	path = .vim/bundle/handlebars
 	url = git://github.com/nono/vim-handlebars.git
+[submodule ".vim/bundle/vim-vroom"]
+	path = .vim/bundle/vim-vroom
+	url = git://github.com/skalnik/vim-vroom.git
+[submodule ".vim/bundle/vim-tabular"]
+	path = .vim/bundle/vim-tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule "/Users/adil_jarulin/.vim/bundle/vim-gist"]
+	path = /Users/adil_jarulin/.vim/bundle/vim-gist
+	url = git://github.com/mattn/gist-vim.git
