@@ -4,6 +4,9 @@ call pathogen#runtime_append_all_bundles()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set exrc            " enable per-directory .vimrc files
+set secure          " disable unsafe commands in local .vimrc files
+
 " JCUKEN
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -550,8 +553,8 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vroom_map_keys = 0
-map <leader>t :call vroom#RunTestFile({'options':'--drb'})<cr>
-map <leader>T :call vroom#RunNearestTestFile({'options':'--drb'})<cr>
+map <leader>t :call vroom#RunTestFile()<cr>
+map <leader>T :call vroom#RunNearestTest()<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
