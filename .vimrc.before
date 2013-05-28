@@ -1,0 +1,5 @@
+call janus#disable_plugin('nerdtree', "I don't like it")
+
+let mapleader=","
+let g:EasyMotion_leader_key = '<Leader><Space>'
+
