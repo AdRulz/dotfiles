@@ -6,6 +6,20 @@ set winheight=40
 set winminheight=3
 set winwidth=150
 set winminwidth=50
+
+set wildignore+=*/tmp/*
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ZEN CODING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.scss set filetype=scss
+let g:user_zen_settings = {
+      \  'scss' : {
+      \    'filters' : 'fc',
+      \  }
+      \}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,6 +62,10 @@ nnoremap <cr> :nohlsearch<cr>
 vnoremap <C-r> <Esc>:%s/<C-r>+//gc<left><left><left>
 
 nnoremap <leader><leader> <c-^>
+
+" format the entire file
+nnoremap <c-i> ggVG=''j
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KILL ARROW KEYS
