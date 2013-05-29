@@ -1,0 +1,12 @@
+*
+!.gitignore
+!.gitignore_global
+!.gitconfig
+!.githelpers
+!.gitmodules
+!.rvmrc
+!.tmux.conf
+!.vimrc.after
+!.vimrc.before
+!.janus
+
