@@ -10,3 +10,6 @@
 [submodule ".janus/vim-powerline"]
 	path = .janus/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule ".janus/tabular"]
+	path = .janus/tabular
+	url = git://github.com/godlygeek/tabular.git
