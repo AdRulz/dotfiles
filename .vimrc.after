@@ -1,6 +1,3 @@
-set exrc            " enable per-directory .vimrc files
-set secure          " disable unsafe commands in local .vimrc files
-
 set cmdheight=2
 set winheight=39
 set winminheight=3
