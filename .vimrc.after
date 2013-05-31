@@ -3,9 +3,15 @@ set winheight=39
 set winminheight=3
 set winwidth=150
 set winminwidth=50
+set timeoutlen=300
 
 set wildignore+=*/tmp/*
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UNMAP JANUS 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nunmap <leader>fef
+nunmap <leader>fc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ZEN CODING
@@ -136,7 +142,7 @@ map <leader>gl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
 map <leader>gp :CtrlPClearCache<cr>\|:CtrlP public<cr>
 map <leader>gs :CtrlPClearCache<cr>\|:CtrlP app/assets/stylesheets<cr>
 map <leader>gf :CtrlPClearCache<cr>\|:CtrlP features<cr>
-map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
+map <leader>f :CtrlP<cr>
 map <leader>F :CtrlPClearCache<cr>\|:CtrlP %%<cr>
 
 map <leader>gjv :CtrlPClearCache<cr>\|:CtrlP app/assets/javascripts/views<cr>
