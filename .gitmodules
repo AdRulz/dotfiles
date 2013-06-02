@@ -13,3 +13,6 @@
 [submodule ".janus/tabular"]
 	path = .janus/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule ".janus/vim-ruby-refactoring"]
+	path = .janus/vim-ruby-refactoring
+	url = git://github.com/ecomba/vim-ruby-refactoring.git
