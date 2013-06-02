@@ -5,6 +5,9 @@ set winwidth=150
 set winminwidth=50
 set timeoutlen=300
 
+" allow unsaved background buffers and remember marks/undo for them
+set hidden
+
 set wildignore+=*/tmp/*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -12,6 +15,7 @@ set wildignore+=*/tmp/*
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nunmap <leader>fef
 nunmap <leader>fc
+nunmap <leader>tw
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ZEN CODING
