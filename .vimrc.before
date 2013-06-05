@@ -4,5 +4,5 @@ set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 
 let mapleader=","
+let g:vroom_map_keys = 0
 let g:EasyMotion_leader_key = '<Leader><Space>'
-

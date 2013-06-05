@@ -9,7 +9,6 @@ set timeoutlen=300
 set hidden
 
 set wildignore+=*/tmp/*
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UNMAP JANUS 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -331,6 +330,5 @@ nnoremap <leader>.s :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vroom_map_keys = 0
 map <leader>t :call vroom#RunTestFile()<cr>
 map <leader>T :call vroom#RunNearestTest()<cr>

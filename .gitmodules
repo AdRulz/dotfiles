@@ -7,9 +7,6 @@
 [submodule ".janus/match-tag-always"]
 	path = .janus/match-tag-always
 	url = git://github.com/Valloric/MatchTagAlways.git
-[submodule ".janus/vim-powerline"]
-	path = .janus/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
 [submodule ".janus/tabular"]
 	path = .janus/tabular
 	url = git://github.com/godlygeek/tabular.git
