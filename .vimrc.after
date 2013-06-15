@@ -1,4 +1,4 @@
-set cmdheight=2
+set cmdheight=1
 set winheight=39
 set winminheight=3
 set winwidth=150
