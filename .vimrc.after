@@ -145,7 +145,7 @@ map <leader>gl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
 map <leader>gp :CtrlPClearCache<cr>\|:CtrlP public<cr>
 map <leader>gs :CtrlPClearCache<cr>\|:CtrlP app/assets/stylesheets<cr>
 map <leader>gf :CtrlPClearCache<cr>\|:CtrlP features<cr>
-map <leader>f :CtrlP<cr>
+map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
 map <leader>F :CtrlPClearCache<cr>\|:CtrlP %%<cr>
 
 map <leader>gjv :CtrlPClearCache<cr>\|:CtrlP app/assets/javascripts/views<cr>
@@ -301,21 +301,33 @@ function! AlternateForCurrentFile()
   let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<javascripts\>') != -1
   let in_assets = match(current_file, '\<javascripts\>')  != -1
 
+  let is_template = match(current_file, '\<templates\>')  != -1
+
   if going_to_spec
+
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
     end
+
     if in_assets
       let new_file = substitute(new_file, '^assets/', '', '')
     end
 
+
     let new_file = substitute(new_file, '\.js\(\.\{0,1\}\)\@=', '_spec.js', '')
     let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+    let new_file = substitute(new_file, '\.handlebars$', '_spec.js', '')
     let new_file = 'spec/' . new_file
   else
-    let new_file = substitute(new_file, '_spec\.js', '.js', '')
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+
+    if is_template
+      let new_file = substitute(new_file, '_spec\.js', '.handlebars', '')
+    else
+      let new_file = substitute(new_file, '_spec\.js', '.js', '')
+      let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    end
     let new_file = substitute(new_file, '^spec/', '', '')
+
     if in_assets
       let new_file = 'assets/' . new_file
     end
@@ -325,6 +337,7 @@ function! AlternateForCurrentFile()
   endif
   return new_file
 endfunction
+
 nnoremap <leader>.s :call OpenTestAlternate()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -332,3 +345,16 @@ nnoremap <leader>.s :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>t :call vroom#RunTestFile()<cr>
 map <leader>T :call vroom#RunNearestTest()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EXEC PROJECT`S VIMRC
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ExecProjectVimrc()
+  let current_dir =  system('pwd')
+  let home_dir =  system('echo $HOME')
+  if filereadable('.vimrc') && current_dir != home_dir
+    source .vimrc
+  endif
+endfunction
+
+call ExecProjectVimrc()
