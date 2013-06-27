@@ -38,11 +38,10 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme solarized
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+colorscheme twilight256 
 let g:solarized_diffmode = "high"
 let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
 
 "Highlight commas for best diff with dots (special for Skyhook Mono) 
 

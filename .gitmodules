@@ -13,3 +13,6 @@
 [submodule ".janus/vim-ruby-refactoring"]
 	path = .janus/vim-ruby-refactoring
 	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule ".janus/twiligth256"]
+	path = .janus/twiligth256
+	url = https://github.com/vim-scripts/twilight256.vim
