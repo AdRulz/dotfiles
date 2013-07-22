@@ -19,11 +19,13 @@ set wildignore+=*/tmp/*
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUSSO TOURISTO 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set keymap=russian-jcukenwin
+set keymap=russian-jcukenmac
 set iminsert=0
 set imsearch=0
 highlight lCursor ctermbg=Cyan
 setlocal spell spelllang=ru_yo,en_us
+
+imap <c-l> <c-^>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UNMAP JANUS 
