@@ -26,6 +26,7 @@ highlight lCursor ctermbg=Cyan
 setlocal spell spelllang=ru_yo,en_us
 
 imap <c-l> <c-^>
+nn <F7> :setlocal spell! spell?<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UNMAP JANUS 
