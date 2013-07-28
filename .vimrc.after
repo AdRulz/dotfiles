@@ -30,17 +30,19 @@ imap <c-l> <c-^>
 "cycle spellcheck languages
 "
 let g:myLangList = [ "nospell", "ru_yo", "en_us" ]
-let b:myLang = 0
 
 function! ToggleSpell()
-  let b:myLang = b:myLang + 1
-  if b:myLang >= len( g:myLangList ) | let b:myLang = 0 | endif
-  if b:myLang == 0
+  if !exists('b:currentLang')
+    let b:currentLang = 0
+  endif
+  let b:currentLang = b:currentLang + 1
+  if b:currentLang >= len( g:myLangList ) | let b:currentLang = 0 | endif
+  if b:currentLang == 0
     setlocal nospell
   else
-    execute "setlocal spell spelllang=" . get(g:myLangList, b:myLang)
+    execute "setlocal spell spelllang=" . get(g:myLangList, b:currentLang)
   endif
-  echo "spell checking language:" g:myLangList[b:myLang]
+  echo "spell checking language:" g:myLangList[b:currentLang]
 endfunction
 
 nmap <silent> <F7> :call ToggleSpell()<CR>
