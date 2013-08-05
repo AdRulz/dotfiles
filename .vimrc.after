@@ -380,6 +380,7 @@ nnoremap <leader>.s :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vroom_clear_screen=0
 map <leader>t :call vroom#RunTestFile()<cr>
 map <leader>T :call vroom#RunNearestTest()<cr>
 
