@@ -15,6 +15,7 @@ set timeoutlen=300
 set hidden
 
 set wildignore+=*/tmp/*
+au BufRead,BufNewFile Assetfile set filetype=ruby
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUSSO TOURISTO 
