@@ -20,6 +20,8 @@ au BufRead,BufNewFile Assetfile set filetype=ruby
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUSSO TOURISTO 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set fileencodings=utf-8,cp1251,koi8-r,cp866
+
 set keymap=russian-jcukenmac
 set iminsert=0
 set imsearch=0
