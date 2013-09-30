@@ -152,6 +152,25 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROJECT'S CANVAS FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>c :call OpenCanvasFile()<cr>
+
+
+function! OpenCanvasFile()
+  let canvas_file = GetCanvasFile()
+  exec ':botright 100 :vs ' . canvas_file
+endfunction
+
+function! GetCanvasFile()
+  if !filereadable('canvas.md') && filereadable('../canvas.md')
+    return '../canvas.md'
+  else
+    return 'canvas.md'
+  endif
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC CtrlP TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>gr :topleft :split config/routes.rb<cr>
