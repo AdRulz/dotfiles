@@ -204,7 +204,7 @@ map <leader>gl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
 map <leader>gp :CtrlPClearCache<cr>\|:CtrlP public<cr>
 map <leader>gs :CtrlPClearCache<cr>\|:CtrlP app/assets/stylesheets<cr>
 map <leader>gf :CtrlPClearCache<cr>\|:CtrlP spec/features<cr>
-map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
+map <leader>f :CtrlP<cr>
 map <leader>F :CtrlPClearCache<cr>\|:CtrlP %%<cr>
 
 map <leader>gjv :CtrlPClearCache<cr>\|:CtrlP app/assets/javascripts/views<cr>
