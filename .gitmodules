@@ -19,3 +19,9 @@
 [submodule "/Users/adil_jarulin/.janus/vim-russian-jcukenmac"]
 	path = /Users/adil_jarulin/.janus/vim-russian-jcukenmac
 	url = https://github.com/shvechikov/vim-keymap-russian-jcukenmac
+[submodule ".janus/vim-russian-jcukenmac"]
+	path = .janus/vim-russian-jcukenmac
+	url = https://github.com/shvechikov/vim-keymap-russian-jcukenmac.git
+[submodule ".janus/vim-slim"]
+	path = .janus/vim-slim
+	url = https://github.com/slim-template/vim-slim
