@@ -25,3 +25,6 @@
 [submodule ".janus/vim-slim"]
 	path = .janus/vim-slim
 	url = https://github.com/slim-template/vim-slim
+[submodule "/Users/adil_jarulin/.janus/vim-ruby-refactoring"]
+	path = /Users/adil_jarulin/.janus/vim-ruby-refactoring
+	url = git@github.com:ecomba/vim-ruby-refactoring.git
