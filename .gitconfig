@@ -45,6 +45,10 @@
 
     pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master" #grab all of the latest changes from both remotes, and then merge in the commits from upstream
 
+     ;fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
+     fix = "!vim `git diff --name-only --diff-filter=U`"
+     fixa = "!git add `git diff --name-only --diff-filter=U`"
+
 
 [merge]
     tool = vimdiff
