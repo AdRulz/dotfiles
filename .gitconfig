@@ -45,7 +45,7 @@
 
     pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master" #grab all of the latest changes from both remotes, and then merge in the commits from upstream
 
-     ;fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
+     ;fix = "!f() { ${EDITOR} `git diff --name-only`; }g f"
      fix = "!vim `git diff --name-only --diff-filter=U`"
      fixa = "!git add `git diff --name-only --diff-filter=U`"
 
@@ -56,3 +56,18 @@
 [core]
 	editor = /usr/local/bin/vim
 	excludesfile = /Users/adil_jarulin/.gitignore_global
+
+[merge "gemfilelock"]
+ name = relocks the gemfile.lock
+   driver = bundle lock
+
+[merge "railsschema"]
+  name = newer Rails schema version
+  driver = "ruby -e '\n\
+    system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
+    b = File.read(%(%A))\n\
+    b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
+      %(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
+    end\n\
+    File.open(%(%A), %(w)) {|f| f.write(b)}\n\
+    exit 1 if b.include?(%(<)*%L)'"
